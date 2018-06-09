@@ -9,6 +9,8 @@ $white: #fff;
 $blue: #4a9ae1;
 $shadow-color: rgba(0, 0, 0, .2);
 $code-color: #bf616a;
+$default-text-size: 22px;
+$small-text-size: 18px;
 
 // Fonts
 $serif-primary: 'Times New Roman', Times, serif;
@@ -26,4 +28,14 @@ $monospaced: Menlo, Monaco, monospace;
   -webkit-transition: $args;
      -moz-transition: $args;
           transition: $args;
+}
+
+@mixin text {
+  font-size: $default-text-size;
+  letter-spacing: -0.1px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  color: #000;
 }

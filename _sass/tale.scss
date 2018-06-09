@@ -6,3 +6,24 @@
 @import 'tale/layout';
 @import 'tale/pagination';
 @import 'tale/catalogue';
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 3rem 0 1rem;
+}
+
+h3 {
+    color: $default-color;
+    font-weight: 500;
+    font-size: $default-text-size;
+    margin-bottom: 0.5rem;
+}
+
+h4 {
+    font-size: $default-text-size;    
+}

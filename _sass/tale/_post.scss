@@ -1,6 +1,6 @@
 .post {
   padding: 3rem 0;
-
+  
   &-info {
     display: none;
   }
@@ -21,15 +21,16 @@
   }
 
   p {
+    @include text;
     margin: 0 0 1rem;
-    font-size: 22px;
-    letter-spacing: -0.1px;
-    font-weight: 400;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    text-align: left;
-    color: #000;
+  }
 
+  li {
+    @include text;
+  }
+
+  .small, .small > li {
+    font-size: $small-text-size;
   }
 
   a:hover {

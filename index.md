@@ -1,5 +1,7 @@
 ---
 layout: post
+pagination: 
+  enabled: false
 title: About me
 ---
 
