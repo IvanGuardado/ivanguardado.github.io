@@ -17,43 +17,14 @@ Esa es la pregunta que me hacía constantemente cuando empecé a leer sobre el t
 4. Envía un email de bienvenida.
 
 Todo el código encargado de que todo ese flujo se cumpla es código de lógica de negocio o también llamado del **dominio de la aplicación**, pero todos los detalles sobre cómo se persiste el usuario (BBDD), o cómo se envía el email de bienvenida (Mandrill, SES, etc…) es código de infraestructura. La razón detrás esta separación está muy clara: cambiar la forma de enviar los emails o de persistir usuarios no debería modificar la lógica de lo que nuestra aplicación tiene que hacer.
-.
 
-.
+![Image 1]({{ "/assets/images/domain-infrastructure-1.png" | absolute_url }})
 
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
 Pero, ¿cómo conseguimos que al cambiar el repositorio de MySQL por uno de Mongo la lógica en nuestro dominio no se entere y continúe funcionando como si nada? Si conoces algo la sintaxis de consultas de mongo sabrás que es muy distinta de la típica SQL…
 
 La solución es que el código de dominio **exponga interfaces**, de forma que establece una vía de comunicación con las capas externas. El código va a entender solamente estas interfaces expuestas, por lo que son las capas externas las que se tienen que adaptar (esta es la razón por la que también se conoce a esta técnica como *Ports & Adapters*).
-.
 
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
+![Image 2]({{ "/assets/images/domain-infrastructure-2.png" | absolute_url }})
 
 En este ejemplo, un caso de uso del dominio de la aplicación está exponiendo que necesita una implementación de `UserRepository`, y pueden existir múltiples implementaciones para ella. Por ejemplo, podríamos tener una implementación que usa MySql para producción y una de Mongo para local… Lo importante es que la lógica de `createNewUser` no se enteraría de nada porque todos hablan el mismo lenguaje. **Las reglas de negocio siguen siendo las mismas** y por tanto no deberíamos tener que tocar nada ahí.
 
@@ -77,70 +48,37 @@ Este tipo de servicios deberían simplemente coordinar el flujo entre los distin
 
 A los servicios de aplicación también se les conoce como actions, command handlers o use cases. Yo los llamaré **acciones** a partir de ahora.
 
-.
+```
+ls actions/news
 
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
+addNewContent.js
+browseTopicContent.js
+deliverContentViaDM.js
+fetchTopicContent.js
+getHighlightedTopics.js
+listSubscriptions.js
+searchTopicsForUser.js
+showContent.js
+subscribeToChannelTopic.js
+unsubscribeFromAllChannelTopics.js
+unsubscribeFromChannelTopic.js
+```
 
 
 Cada caso de uso solo puede estar representado en el código como una acción, y si mantenemos la regla de que cada acción debe estar en su propio fichero, podemos hacernos una idea de lo que la aplicación puede hacer simplemente explorando el directorio de acciones.
 
 ### Ejemplo del flujo de una acción
 En este gráfico de Sandro Mancuso podemos ver cómo podría modelarse una acción para hacer un pago en una aplicación. Fíjate como las dependencias de infraestructura son definidas como interfaces.
-.
 
-.
+[![Crafted Design Sandro Mancuso]({{ "/assets/images/crafted-design-sandro-mancuso-21-638.jpg" | absolute_url }})](https://es.slideshare.net/JAXLondon2014/crafted-design-sandro-mancuso)
 
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-https://es.slideshare.net/JAXLondon2014/crafted-design-sandro-mancuso
 
 Otro concepto interesante aquí en el que no entraremos ahora mismo, es el de *Outside-in*. Si nos fijamos en el gráfico, cuanto más a la izquierda estamos, el lenguaje usado es más cercano a negocio, mientras que cuanto más nos adentramos hacia la derecha el lenguaje se vuelve más técnico. De esta forma podemos usar la técnica de TDD para definir los tests para una acción e ir definiendo de forma iterativa el modelo necesario para implementar su comportamiento.
 
 ## Regla de dependencia
 Ahora que hemos visto todas las capas de código en las que debemos dividir nuestro código de dominio, podemos representar su jerarquía como un conjunto de capas concéntricas donde las capas más cercanas al centro representan el modelo de nuestro negocio, y las capas más exteriores representan detalles de implementación e infraestructura.
-.
 
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
+![Layers]({{ "/assets/images/layers.png" | absolute_url }})
 
 Para mantener todo el código desacoplado necesitamos seguir la regla de dependencia, que dice que **las capas internas no pueden conocer nada sobre las capas exteriores**. Es decir, una entidad no puede conocer y usar un servicio de dominio, y un servicio de dominio no puede usar un servicio de aplicación, etc… Sin embargo el flujo contrario está permitido, por ejemplo, como ya hemos visto, un servicio de aplicación orquesta el flujo de servicios de dominio y entidades, o un endpoint del framework llamará a un servicio de aplicación.
 
