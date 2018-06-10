@@ -2,7 +2,7 @@
 layout: post
 title: "Parte III: Tests automáticos"
 permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs/parte-iii-tests-automaticos.html
-description: Una parte imprescindible en el desarrollo de software es la automatización de pruebas sobre el código. De nuevo, esta guía no pretende ser un tutorial sobre testing sino mostrar algunas técnicas para llevarlo a cabo en NodeJS, teniendo en cuenta las prácticas de desarrollo de código vistas anteriormente.
+description: En esta tercera parte veremos como aplicar diferentes técnicas de testing en NodeJS.
 date: 2018-06-08 19:16:49 +0100
 categories: [NodeJS]
 tags: [NodeJS, Code, Good practices, TDD]

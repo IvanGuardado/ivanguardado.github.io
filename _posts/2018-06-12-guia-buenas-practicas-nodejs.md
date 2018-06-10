@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Guía de buenas prácticas en NodeJS
-description: Una guía de buenas prácticas en NodeJS donde te cuento algunas de las buenas prácticas aprendidas a lo largo de 6 años.
+description: Una guía de NodeJS donde cuento algunas de las buenas prácticas aprendidas a lo largo de 6 años. Repasaremos conceptos de arquitectura limpia, DI, TDD...
 image: assets/images/guia-buenas-practicas-nodejs.png
 date: 2018-06-08 19:16:49 +0100
 permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs.html
