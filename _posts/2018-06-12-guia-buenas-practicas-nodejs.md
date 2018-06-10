@@ -1,5 +1,5 @@
 ---
-layout: post-guia
+layout: post
 title:  Guía de buenas prácticas en NodeJS
 date:   2018-06-08 19:16:49 +0100
 permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs.html
@@ -12,3 +12,5 @@ Siendo sinceros, en aquel momento no sabíamos muy bien lo que hacíamos. NodeJS
 Las alarmas saltaron en aquel momento y gracias a la incorporación de nuevos desarrolladores con más experiencia en el tema, como [David Rey](https://twitter.com/dreyacosta), comenzamos poco a poco a aplicar buenas prácticas de arquitectura de código en nuestra aplicación NodeJS.
 
 En esta guía mi intención es mostraros esas buenas prácticas que han hecho que nuestro código sea más **flexible**, más fácil de **entender** y de **testear**.
+
+{% include indice.html %}

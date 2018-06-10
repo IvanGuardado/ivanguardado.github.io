@@ -1,12 +1,12 @@
 ---
-layout: post-guia
+layout: post
 title: "Parte II: Aplicando la teoría"
 permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs/parte-ii-aplicando-teoria.html
 pagination: 
     enabled: false
 ---
 
-En la primera parte hemos visto las distintas partes en las que podemos dividir nuestro código y las reglas que tenemos que seguir para que el código se mantenga desacoplado. Puede que todo suene un poco abstracto y todavía sea difícil hacerse una idea de como aplicar todo esto en nuestras aplicaciones de NodeJS. En esta parte veremos cómo llevar a la práctica todo eso.
+En la primera parte hemos visto las distintas partes en las que podemos dividir nuestro código y las reglas que tenemos que seguir para que se mantenga desacoplado. Puede que todo suene un poco abstracto y todavía sea difícil hacerse una idea de como aplicar todo esto en nuestras aplicaciones de NodeJS. En esta parte veremos cómo llevar a la práctica todo eso.
 
 ## Inyección de dependencias
 Vamos a seguir con el ejemplo anterior en el que inyectamos las dependencias directamente en los argumentos de la llamada a la función.
@@ -19,7 +19,7 @@ function createUser(userRepository, userValidator, email, password) {
 }
 ```
 
-Como hemos dicho, mezclar las dependencias con los parámetros no es una buena práctica. Vamos a intentar mejorar eso ayudándonos de las arrow functions de ES6 y separar las dependencias de los argumentos de la función.
+Como hemos dicho, mezclar las dependencias con los parámetros no es una buena práctica. Vamos a intentar mejorar eso ayudándonos de las *arrow functions* de ES6 y separar las dependencias de los argumentos de la función.
 
 ```js
 const createUser = (userRepository, userValidator) => (email, password) => {
@@ -59,7 +59,7 @@ const createUser = createUserBuilder(userRepository, userValidator)
 createUser("ana@foo.com", "123")
 ```
 
-Gracias a esta técnica podemos crear distintas interpretaciones de la función, por ejemplo, para testing podemos pasarle un repositorio en memoria o un doble que no haga nada, o si por lo que sea nos encontramos en un momento de migración podríamos tener dos funciones distintas, una usando Mongo y otra MySql.
+Gracias a esta técnica podemos crear distintas interpretaciones de la función. Por ejemplo, para testing podemos pasarle un repositorio en memoria o un doble que no haga nada, o si por lo que sea nos encontramos en un momento de migración podríamos tener dos funciones distintas, una usando Mongo y otra MySql.
 
 ```js
 const createUserFake    = createUserBuilder(fakeUserRepository, userValidator)
@@ -70,10 +70,10 @@ const createUserInMongo = createUserBuilder(MongoUserRepository, userValidator)
 ## Módulos constructores
 Ahora que ya tenemos la posibilidad de inyectar dependencias y podemos separar la parte de construción (inyección) de la parte de ejecución tenemos que definir una forma estándar de dónde, cuándo y cómo definimos estos constructores en nuestro proyecto.
 
-En Audiense lo hacemos de la siguiente manera, y la verdad que nos funciona muy bien ya que el código se queda limpio y fácil de usar.
+En Audiense lo hacemos de la siguiente manera, y la verdad que nos funciona muy bien ya que el código se queda limpio y fácil de usar:
 
-- Todos los módulos con dependencias exponen una función constructora. Por lo que el uso de require en el código de dominio es practicamente inexistente (algunas excepciones que permitimos son dependencias como async o el logger)
-- Las construcciones se hacen en los ficheros índice (index.js). Aquí es donde se verán todos los require y se puede ver de forma explícita las dependencias de todos los módulos en ese directorio. Es un buen lugar donde comenzar a buscar duplicidades o patrones para abstraer.
+- Todos los módulos con dependencias exponen una función constructora. Por lo que el uso de `require` en el código de dominio es practicamente inexistente (algunas excepciones que permitimos son dependencias como `async` o `lodash`)
+- Las construcciones se hacen en los ficheros índice (index.js). Aquí es donde estarán todos los `require` y se puede ver de forma explícita las dependencias de todos los módulos en ese directorio. Es un buen lugar donde comenzar a buscar duplicidades o patrones para abstraer.
 
 **Ejemplo de dos acciones y su fichero constructor**
 
@@ -86,7 +86,7 @@ module.exports = ({ userRepository, userValidator }) => (email, pwd) => {
 
 ```js
 // actions/removeUser.js
-module.exports = ({ userRepository }) => (requesterUserId, userIdToRemove) => {
+module.exports = ({ userRepository }) => (userIdToRemove) => {
    // ...
 }
 ```
@@ -99,7 +99,7 @@ const userRepository = require('./infrastructure/repository').userRepository
 // Exponemos las funciones construidas
 module.exports = {
    createUser: require('./createUser')({ userRepository, userValidator }),
-   removeUser: require('/removeUser')({ userRepository })
+   removeUser: require('./removeUser')({ userRepository })
 };
 ```
 
@@ -137,18 +137,18 @@ describe('Create a new account', () => {
 ## Patrones de diseño
 Cuando se habla sobre arquitectura de código, siempre se suele recurrir a ciertos patrones de diseño de forma que el propio código nos ayude a seguir el estándar que definamos y que todo encaje a la perfección. Por ejemplo, podríamos decidir que todas las acciones de la aplicación fuesen clases que implementen una interfaz `Action` de forma que todas tengan un método llamado `execute`.
 
-Está bien hacerlo si el lenguaje en el que trabajas te lo permite, sin embargo, JavaScript es un lenguaje de programación sin tipos y muy sencillo (cada vez menos). Esto tiene su partes buenas y malas. La parte mala es que no vamos a poder aplicar estos patrones de diseño fácilmente, por lo que considero un error hacer hacks con el lenguaje para intentar simular este tipo de cosas. En lugar de esto, vamos a aprovechar su sencillez para crear una arquitectura sencilla.
+Está bien hacerlo si el lenguaje en el que trabajas te lo permite, sin embargo, JavaScript es un lenguaje de programación sin tipos y muy sencillo (cada vez menos). Esto tiene su partes buenas y malas. La parte mala es que no vamos a poder aplicar estos patrones de diseño fácilmente, por lo que considero un error hacer hacks con el lenguaje para intentar simular este tipo de cosas. En lugar de esto, vamos a aprovechar su sencillez para **crear una arquitectura sencilla**.
 
 Cuando no podemos definir las reglas de arquitectura en el propio código usando patrones de diseño, tenemos que hacer que sean los propios programadores los que conozcan las reglas y las apliquen, y para esto nada mejor que tener algo sencillo.
 
-En la primera parte decíamos que las dependencias de infraestructura deberían ser inyectadas en nuestro código de dominio, de forma que este define una interfaz y el código desde fuera se adapta a ella. Pero ¿cómo hacemos esto si no tenemos interfaces en JavaScript? La primera solución es **sentido común**. Si controlas ambas partes del código tienes que tener la prudencia de no cambiar la interfaz, o en caso de hacerlo saber a qué partes puede estar afectando. Sin embargo puede haber otras soluciones más o menos complejas para intentar evitar este tipo de escenarios. La más sencilla y natural es con tests.
+En la primera parte decíamos que las dependencias de infraestructura deberían ser inyectadas en nuestro código de dominio, de forma que este define una interfaz y el código desde fuera se adapta a ella. Pero ¿cómo hacemos esto si no tenemos interfaces en JavaScript? La primera solución es **sentido común**. Si controlas ambas partes del código tienes que tener la prudencia de no cambiar la interfaz, o en caso de hacerlo saber a qué partes puede estar afectando. Sin embargo puede haber otras soluciones más o menos complejas para intentar evitar este tipo de escenarios. La más sencilla y natural es con tests de código.
 
 ## Objetos vs. Clases vs. Funciones
-Aunque últimamente la programación funcional está comenzando a tener más relevancia gracias a lenguajes como Scala, Swift o Kotlin, la mayoría de nosotros hemos sido programados para pensar en OOP (Object Oriented Programming). En mi opinión esto ha sido debido a la gran influencia que ha tenido Java en el sector en las últimas décadas. La gente de Sun hizo muchas cosas bien y revolucionó la forma de crear software. Esta revolución grabó en la cabeza de todos que la OOP era la forma idónea de modelar el software hasta el punto de que tanto los nuevos lenguajes de programación como los ya existentes lo incluyeron, sin olvidar que académicamente era (o es) lo que se enseña en las universidades.
+Aunque últimamente la programación funcional está comenzando a tener más relevancia gracias a lenguajes como Scala, Swift o Kotlin, la mayoría de nosotros hemos sido programados para pensar en OOP (Object Oriented Programming). En mi opinión esto ha sido debido a la gran influencia de Java en el sector en las últimas décadas. La gente de Sun hizo muchas cosas bien y revolucionó la forma de crear software. Esta revolución grabó en la cabeza de todos que la OOP era la forma idónea de modelar el software hasta el punto de que tanto los nuevos lenguajes de programación como los ya existentes lo incluyeron. Esto también hizo que fuese el estándar a enseñar en las universidades.
 
 Desde mi punto de vista, OOP no tiene nada de malo y está demostrado que funciona bien. Igual de bien como puede funcionar la programación funcional. Al final todo se reduce al conocimiento que se tenga sobre la técnica y no a la técnica en sí. Lo que no estoy tan de acuerdo es intentar simular la programación OOP que vemos en Java en lenguajes mucho más simples como JavaScript.
 
-Como hemos dicho, vamos a aprovecharnos de sus debilidades para hacer el código más sencillo en lugar de complicarnos a buscar clases y herencias en un lenguaje que no está diseñado para eso. ¿Deberíamos modelar todo como objetos siguiendo el legado de Java? En Audiense creemos que no. A continuación listamos las reglas para elegir si usar clases, objetos (singleton) o funciones.
+Como hemos dicho, buscaremos una solución sencilla en lugar de complicarnos a buscar clases, herencia y polimorfismo en **un lenguaje que no está diseñado para eso**. ¿Deberíamos modelar todo como objetos siguiendo el legado de Java? En Audiense creemos que no. A continuación listamos las reglas para elegir si usar clases, objetos (*singleton*) o funciones.
 
 ### Acciones
 Un caso de uso de la aplicación está representado como una acción en nuestro código. Las acciones son verbos (*crear* usuario, *cambiar* contraseña, *borrar* ítem de contenido...) por lo tanto las definimos como funciones. Esto quiere decir que todos los punto de entrada a nuestra lógica de dominio son funciones. ¿Hay algo más sencillo que eso?
@@ -164,7 +164,7 @@ module.exports = (deps) = (email, pwd) => {
 ```
 
 ```js
-// Clase: demasiada complejidad
+// Clase: demasiada complejidad innecesaria
 // const createUserHandler = new CreateUserHandler()
 // createUser.handle(email, pwd)
 module.exports = (deps) = function CreateUserHandler() {
@@ -214,4 +214,6 @@ function User(id, name) {
 }
 ```
 
-Si tenemos diversas formas de estructurar nuestro modelo, ¿por qué generalizar y decir que todo deben ser objetos? Elige la que mejor se adapte para cada caso y no olvides que el desarrollo de software es iterativo. Algo que comienza como una función podría acabar convirtiéndose en una clase si por la razón que sea tiene que guardar un estado. Mantente atento para evitar que un código sencillo se acabe convirtiendo en una maraña de funciones sin sentido.
+Si tenemos diversas formas de estructurar nuestro modelo, **¿por qué generalizar y decir que todo deben ser objetos?** Elige la que mejor se adapte para cada caso y no olvides que el desarrollo de software es iterativo. Algo que comienza como una función podría acabar convirtiéndose en una clase si por la razón que sea tiene que guardar un estado. Mantente atento para evitar que un código sencillo se acabe convirtiendo en una maraña de funciones sin sentido.
+
+{% include indice.html %}

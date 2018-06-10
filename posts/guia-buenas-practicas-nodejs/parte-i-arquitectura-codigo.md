@@ -1,16 +1,16 @@
 ---
-layout: post-guia
+layout: post
 permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs/parte-i-arquitectura-codigo.html
 title: "Parte I: Teoría de arquitectura de código"
 pagination: 
     enabled: false
 ---
 
-*Hexagonal Architecture, Clean Architecture, Onion Architecture*... seguramente alguna vez has visto estos términos y puede que, como a mi al principio, no acabes de entender bien a que se refieren o que diferencias existen entre ellos. La buena noticia es que en el fondo todos ellos tratan sobre lo mismo: organizar el código de la aplicación de forma que se separa bien la lógica de negocio del código de infraestructura. Pero **¿qué demonios es la lógica de negocio?**
+*Hexagonal Architecture, Clean Architecture, Onion Architecture*... seguramente alguna vez has visto estos términos y puede que, como yo al principio, no acabes de entender bien a que se refieren o que diferencias existen entre ellos. La buena noticia es que en el fondo todos ellos tratan sobre lo mismo: organizar el código de la aplicación de forma que se separa bien la lógica de negocio del código de infraestructura. Pero **¿qué demonios es la lógica de negocio?**
 
 Esa es la pregunta que me hacía constantemente cuando empecé a leer sobre el tema. Aunque entraremos más en detalle, podemos resumirlo en que son los casos de uso que una aplicación permite, dejando de lado los detalles de implementación de infraestructura. Por ejemplo:
 
-**Ejemplo de caso de uso: Crear un nuevo usuario**
+**Caso de uso: crear un nuevo usuario**
 1. Comprueba que no hay otro usuario con el email introducido.
 2. Valida que la contraseña sea lo suficientemente fuerte.
 3. Se persiste el usuario.
@@ -32,7 +32,7 @@ En este punto, puede que te estés preguntando cómo se puede hacer que `createN
 
 
 ## Modelando el dominio
-Aunque la separación entre el dominio e infraestructura es la más natural, dentro de nuestro dominio tenemos que modelar toda la lógica de negocio de la mejor forma posible y para eso necesitamos fijar unas reglas. Cuando digo de la mejor forma posible, me refiero a que el código cumple con los fundamentos SOLID de forma que es fácil de leer, de cambiar, y sobre todo, de testear. Dentro del dominio se suele dividir el código en tres categorías o capas: objetos de dominio (o Core Domain), servicios de dominio y servicios de aplicación.
+Aunque la separación entre el dominio e infraestructura es la más natural, dentro de nuestro dominio tenemos que modelar toda la lógica de negocio de la mejor forma posible y para eso necesitamos fijar unas reglas. Cuando digo de la mejor forma posible, me refiero a que el código cumple con los fundamentos SOLID de forma que es fácil de leer, de cambiar, y sobre todo, de testear. Dentro del dominio se suele dividir el código en tres categorías o capas: objetos de dominio (o *Core Domain*), servicios de dominio y servicios de aplicación.
 
 
 ### Objetos de dominio
@@ -44,7 +44,7 @@ Un servicio de dominio define una lógica de negocio que de por sí es demasiado
 ### Servicios de aplicación
 Los servicios de aplicación **son los casos de uso reales** que definen la aplicación y son el punto de entrada desde fuera (framework) a nuestra lógica de negocio. Si queremos conectar nuestro dominio con un servidor web como Express, desde los controladores solamente podremos llamar a estos servicios de aplicación, nunca a servicios de dominio o entidades. 
 
-Este tipo de servicios deberían simplemente coordinar el flujo entre los distintos servicios de dominio, entidades y repositorios.
+Este tipo de servicios deberían simplemente coordinar el flujo entre los distintos servicios de dominio, entidades e infraestructura.
 
 A los servicios de aplicación también se les conoce como actions, command handlers o use cases. Yo los llamaré **acciones** a partir de ahora.
 
@@ -80,9 +80,9 @@ Ahora que hemos visto todas las capas de código en las que debemos dividir nues
 
 ![Layers]({{ "/assets/images/layers.png" | absolute_url }})
 
-Para mantener todo el código desacoplado necesitamos seguir la regla de dependencia, que dice que **las capas internas no pueden conocer nada sobre las capas exteriores**. Es decir, una entidad no puede conocer y usar un servicio de dominio, y un servicio de dominio no puede usar un servicio de aplicación, etc… Sin embargo el flujo contrario está permitido, por ejemplo, como ya hemos visto, un servicio de aplicación orquesta el flujo de servicios de dominio y entidades, o un endpoint del framework llamará a un servicio de aplicación.
+Para mantener todo el código desacoplado necesitamos seguir la regla de dependencia, que dice que **las capas interiores no pueden conocer nada sobre las capas exteriores**. Es decir, una entidad no puede conocer y usar un servicio de dominio, y un servicio de dominio no puede usar un servicio de aplicación, etc… Sin embargo el flujo contrario está permitido, por ejemplo, un servicio de aplicación orquesta el flujo de servicios de dominio y entidades, o un endpoint del framework llamará a un servicio de aplicación.
 
-En algunos casos podemos necesitar dependencias de infraestructura dentro de nuestro dominio, pero como ya hemos visto eso se soluciona exponiendo interfaces (o puertos) de forma que **invertimos el flujo de dependencia**, cumpliendo con lo que nos dice esta regla. A esta técnica se le conoce como inversión de control (Inversion of Control en inglés, IoC)
+En algunos casos podemos necesitar dependencias de infraestructura dentro de nuestro dominio. Eso se soluciona exponiendo interfaces (o puertos) de forma que **invertimos el flujo de dependencia**, cumpliendo con lo que nos dice esta regla. A esta técnica se le conoce como inversión de control (*Inversion of Control* en inglés, IoC)
 
 ### Inyección de dependencias (DI)
 La inyección de dependencias es un patrón de diseño que nos va a permitir realizar la inversión de control en nuestro código. La idea consiste en que las **dependencias son especificadas externamente** en lugar de requerirse explícitamente en el código.
@@ -110,4 +110,13 @@ function createUser(userRepository, userValidator, email, password) {
 El segundo caso es mucho más flexible porque permite que las dependencias se especifiquen de forma externa y por lo tanto se puedan adaptar según el contexto. Esto también hace que sea más testable porque podríamos falsear el repositorio usando un doble para simular escenarios y evitar tener que usar una base de datos real.
 
 Aún así ese código no deberías usarlo en tu aplicación porque mezclar dependencias y parámetros en las llamadas a funciones no es una buena práctica. Veremos una mejor forma de hacer esto, evitando tener que pasar constantemente las dependencias en las llamadas en la segunda parte.
-
+
+{% capture append %}
+#### Bibliografía
+- [http://fideloper.com/hexagonal-architecture](http://fideloper.com/hexagonal-architecture)
+- [https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [https://codely.tv/screencasts/arquitectura-hexagonal-ddd](https://codely.tv/screencasts/arquitectura-hexagonal-ddd)
+{:.small}
+{% endcapture %}
+
+{% include indice.html append=append %}
