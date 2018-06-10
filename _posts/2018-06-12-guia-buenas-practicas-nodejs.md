@@ -1,9 +1,12 @@
 ---
 layout: post
 title:  Guía de buenas prácticas en NodeJS
-date:   2018-06-08 19:16:49 +0100
+description: Una guía de buenas prácticas en NodeJS donde te cuento algunas de las buenas prácticas aprendidas a lo largo de 6 años.
+image: assets/images/guia-buenas-practicas-nodejs.png
+date: 2018-06-08 19:16:49 +0100
 permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs.html
-categories: nodejs, code
+categories: [NodeJS]
+tags: [NodeJS, Code, Good practices]
 ---
 En Audiense llevamos unos 6 años construyendo nuestra aplicación de backend en NodeJS. Por aquel entonces esta novedosa plataforma para correr JS de lado del servidor estaba en auge y la gente se tiraba de cabeza a crear sus proyectos (o incluso a migrar los existentes) en ella aún sin saber si escalaría bien a proyectos grandes.
 

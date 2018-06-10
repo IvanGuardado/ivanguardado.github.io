@@ -2,6 +2,11 @@
 layout: post
 permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs/parte-i-arquitectura-codigo.html
 title: "Parte I: Teoría de arquitectura de código"
+description: Introducción a conceptos básicos de arquitectura de código.
+date: 2018-06-08 19:16:49 +0100
+categories: [NodeJS]
+tags: [NodeJS, Code, Good practices, Clean architecture, DDD]
+image: assets/images/guia-buenas-practicas-nodejs.png
 pagination: 
     enabled: false
 ---

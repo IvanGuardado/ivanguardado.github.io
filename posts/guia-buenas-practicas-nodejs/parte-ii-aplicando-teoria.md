@@ -2,6 +2,11 @@
 layout: post
 title: "Parte II: Aplicando la teoría"
 permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs/parte-ii-aplicando-teoria.html
+description: En la primera parte hemos visto las distintas partes en las que podemos dividir nuestro código y las reglas que tenemos que seguir para que se mantenga desacoplado. Puede que todo suene un poco abstracto y todavía sea difícil hacerse una idea de como aplicar todo esto en nuestras aplicaciones de NodeJS. En esta parte veremos cómo llevar a la práctica todo eso.
+date: 2018-06-08 19:16:49 +0100
+categories: [NodeJS]
+tags: [NodeJS, Code, Good practices, Dependecy injection]
+image: assets/images/guia-buenas-practicas-nodejs.png
 pagination: 
     enabled: false
 ---
