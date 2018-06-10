@@ -34,6 +34,9 @@
   <meta content="{{ site.url }}/{{ page.image }}" property="og:image"> 
   <meta content="summary_large_image" name="twitter:card">  
   <meta content="{{ site.url }}/{{ page.image }}" property="twitter:image">
+  {% else %}
+  <meta content="{{ site.url }}/assets/images/site-logo.png" property="og:image">
+  <meta content="{{ site.url }}/assets/images/site-logo.png" property="twitter:image">
   {% endif %} 
   
   {% if page.categories %} {% for category in page.categories limit:1 %}
