@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Parte II: Aplicando la teoría"
-permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs/parte-ii-aplicando-teoria.html
+permalink: /posts/2018-06-08/arquitectura-codigo-nodejs/parte-ii-aplicando-teoria.html
 description: En este artículo veremos como implementar la inyección de dependencias en NodeJS de una forma sencilla pero muy potente.
 date: 2018-06-08 19:16:49 +0100
 categories: [NodeJS]
 tags: [NodeJS, Code, Good practices, Dependecy injection]
-image: assets/images/guia-buenas-practicas-nodejs.png
+image: assets/images/arquitectura-codigo-nodejs.png
 pagination: 
     enabled: false
 ---

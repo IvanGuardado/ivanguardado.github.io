@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  Guía de buenas prácticas en NodeJS
+title:  Arquitectura de código en NodeJS
 description: Una guía de NodeJS donde cuento algunas de las buenas prácticas aprendidas a lo largo de 6 años. Repasaremos conceptos de arquitectura limpia, DI, TDD...
-image: assets/images/guia-buenas-practicas-nodejs.png
+image: assets/images/arquitectura-codigo-nodejs.png
 date: 2018-06-08 19:16:49 +0100
-permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs.html
+permalink: /posts/2018-06-08/arquitectura-codigo-nodejs.html
 categories: [NodeJS]
 tags: [NodeJS, Code, Good practices]
 ---

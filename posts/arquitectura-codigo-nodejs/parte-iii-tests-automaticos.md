@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Parte III: Tests automáticos"
-permalink: /posts/2018-06-08/guia-buenas-practicas-nodejs/parte-iii-tests-automaticos.html
+permalink: /posts/2018-06-08/arquitectura-codigo-nodejs/parte-iii-tests-automaticos.html
 description: En esta tercera parte veremos como aplicar diferentes técnicas de testing en NodeJS.
 date: 2018-06-08 19:16:49 +0100
 categories: [NodeJS]
 tags: [NodeJS, Code, Good practices, TDD]
-image: assets/images/guia-buenas-practicas-nodejs.png
+image: assets/images/arquitectura-codigo-nodejs.png
 pagination: 
     enabled: false
 ---
