@@ -153,7 +153,7 @@ const checkStatus =
 
 Aunque editores como VS Code te ayudan con el auto completado de directorios, está claro que no es algo elegante. Uno de los problemas de esto es que acoplas los tests a la organización de directorios de tu código.
 
-La solución la trajo [Gabriel](https://twitter.com/gramos74) del mundo de Ruby. Lo que hicimos fue crear un fichero llamado `spec_helpers.js` que define funciones de ayuda que estarán disponibles *automágicamente* en todos los tests. La forma de lograr esto es a través del argumento `--require` de mocha, por lo que si usas otro test runner tendrás que ver si existe algo similar.
+La solución llegó del mundo de Ruby. Lo que hicimos fue crear un fichero llamado `spec_helpers.js` que define funciones de ayuda que estarán disponibles *automágicamente* en todos los tests. La forma de lograr esto es a través del argumento `--require` de mocha, por lo que si usas otro test runner tendrás que ver si existe algo similar.
 
 ```
 # mocha.opts

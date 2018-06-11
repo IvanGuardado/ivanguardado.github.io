@@ -21,7 +21,7 @@ Esa es la pregunta que me hacía constantemente cuando empecé a leer sobre el t
 3. Se persiste el usuario.
 4. Envía un email de bienvenida.
 
-Todo el código encargado de que todo ese flujo se cumpla es código de lógica de negocio o también llamado del **dominio de la aplicación**, pero todos los detalles sobre cómo se persiste el usuario (BBDD), o cómo se envía el email de bienvenida (Mandrill, SES, etc…) es código de infraestructura. La razón detrás esta separación está muy clara: cambiar la forma de enviar los emails o de persistir usuarios no debería modificar la lógica de lo que nuestra aplicación tiene que hacer.
+Todo el código encargado de que todo ese flujo se cumpla es código de lógica de negocio o también llamado del **dominio de la aplicación**, pero todos los detalles sobre cómo se persiste el usuario (BBDD), o cómo se envía el email de bienvenida (Mandrill, SES, etc…) es código de infraestructura. La razón detrás de esta separación está muy clara: cambiar la forma de enviar los emails o de persistir usuarios no debería modificar la lógica de lo que nuestra aplicación tiene que hacer.
 
 ![Image 1]({{ "/assets/images/domain-infrastructure-1.png" | absolute_url }})
 
