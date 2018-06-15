@@ -156,7 +156,7 @@ Desde mi punto de vista, OOP no tiene nada de malo y está demostrado que funcio
 Como hemos dicho, buscaremos una solución sencilla en lugar de complicarnos a buscar clases, herencia y polimorfismo en **un lenguaje que no está diseñado para eso**. ¿Deberíamos modelar todo como objetos siguiendo el legado de Java? En Audiense creemos que no. A continuación listamos las reglas para elegir si usar clases, objetos (*singleton*) o funciones.
 
 ### Acciones
-Un caso de uso de la aplicación está representado como una acción en nuestro código. Las acciones son verbos (*crear* usuario, *cambiar* contraseña, *borrar* ítem de contenido...) por lo tanto las definimos como funciones. Esto quiere decir que todos los punto de entrada a nuestra lógica de dominio son funciones. ¿Hay algo más sencillo que eso?
+Un caso de uso de la aplicación está representado como una acción en nuestro código. Las acciones son verbos (*crear* usuario, *cambiar* contraseña, *borrar* ítem de contenido...) por lo tanto las definimos como funciones. Esto quiere decir que todos los puntos de entrada a nuestra lógica de dominio son funciones. ¿Hay algo más sencillo que eso?
 
 En algunos patrones verás como a veces se crea una interfaz que tienen que implementar todos los servicios de aplicación, obligando por tanto a que sean clases. Pero sinceramente, en este contexto, no le vemos sentido a hacerlo.
 
