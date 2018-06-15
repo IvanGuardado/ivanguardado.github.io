@@ -26,7 +26,9 @@ footer,
   &-title {
     @include transition(all .2s ease-out);
     display: inline-block;
-    background-image: url(./images/favicon-16x16.png);
+    background-image: url(./images/favicon-32x32.png);
+    background-size: 32px;
+    background-repeat: no-repeat;
     width: 32px;
     height: 32px;
     text-indent: -100rem;
