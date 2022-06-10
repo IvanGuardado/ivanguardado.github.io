@@ -6,7 +6,6 @@ date: 2022-06-10
 permalink: /posts/2022/que-hemos-ganado.html
 categories: [coding, 2022]
 tags: [Code, Pragmatism]
-published: false
 ---
 No es ninguna novedad decir que durante los últimos años el desarrollo de software ha experimentado un boom, apareciendo nuevos lenguajes de programación y frameworks que hacen nuestro día a día más fácil... ¿verdad?.
 
