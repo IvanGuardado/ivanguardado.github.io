@@ -9,7 +9,7 @@ tags: [Code, Pragmatism]
 ---
 No es ninguna novedad decir que durante los últimos años el desarrollo de software ha experimentado un boom, apareciendo nuevos lenguajes de programación y frameworks que hacen nuestro día a día más fácil... ¿verdad?.
 
-Yo reo que poco a poco hemos ido incorporando a nuestros proyectos técnicas que, muy probablemente, no necesitamos. Y no me malinterpretes, no quiero parecer un viejo gritando al cielo que antes era todo mejor y lo de ahora son todo tonterías.
+Yo creo que poco a poco hemos ido incorporando a nuestros proyectos técnicas que, muy probablemente, no necesitamos. Y no me malinterpretes, no quiero parecer un viejo gritando al cielo que antes era todo mejor y lo de ahora son todo tonterías.
 
 ![old man yells at cloud](https://media.giphy.com/media/fqtyYcXoDV0X6ss8Mf/giphy.gif)
 
