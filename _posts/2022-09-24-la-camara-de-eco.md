@@ -11,9 +11,9 @@ Por algún motivo, esta semana estuvo rondando por mi cabeza el pensamiento de s
 
 Y justamente, casi como si se tratase de un plan maquiavélico, [Aitor](https://twitter.com/_aitor) nos regaló el libro _SOLID is Not SOLID_ a todo el equipo técnico de Devengo.
 
-Este libro resonó muchísimo en mi cabeza ya desde el primer párrafo. Esta es, literalmente, su primera linea: «_Reading books and attending talks where your experience, opinions, and beliefs are validated is pretty powerful_». Y matiza en el segundo párrafo: «_But it can also blind you to the truth_».
+Este [libro](https://solid-is-not-solid.com/) resonó muchísimo en mi cabeza ya desde el primer párrafo. Esta es, literalmente, su primera línea: «_Reading books and attending talks where your experience, opinions, and beliefs are validated is pretty powerful_». Y matiza en el segundo párrafo: «_But it can also blind you to the truth_».
 
-A estas alturas creo que todos conocemos lo que es una cámara de eco y los segos cognitivos pero nunca me lo había cuestionado sobre este tema. Este libro, de tan solo 63 páginas, me parece super interesante para pensar fuera de la caja y cuestionar ciertos principios que hoy en día repetimos como un dogma.
+A estas alturas creo que todos conocemos lo que es una cámara de eco y los sesgos cognitivos pero nunca me lo había cuestionado sobre este tema. Este libro, de tan solo 63 páginas, me parece super interesante para pensar fuera de la caja y cuestionar ciertos principios que hoy en día repetimos como un dogma.
 
 ¿Qué opinas? ¿Crees que todas las prácticas de SOLID, Clean Architecture, CQRS, DDD, etc... son el camino a seguir o que, quizás, simplemente nos estamos haciendo trampas al solitario, convenciéndonos a nosotros mismos de que no hay otra alternativa?
 
