@@ -6,5 +6,5 @@ date: 2022-09-25
 permalink: /posts/2022/la-camara-de-eco.html
 categories: [coding, 2022]
 tags: [Code, Pragmatism, SOLID, Clean Architecture]
-published: false
+published: true
 ---
