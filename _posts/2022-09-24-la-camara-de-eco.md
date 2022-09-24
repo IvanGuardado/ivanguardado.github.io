@@ -15,6 +15,6 @@ Este [libro](https://solid-is-not-solid.com/) resonó muchísimo en mi cabeza ya
 
 A estas alturas creo que todos conocemos lo que es una cámara de eco y los sesgos cognitivos pero nunca me lo había cuestionado sobre este tema. Este libro, de tan solo 63 páginas, me parece super interesante para pensar fuera de la caja y cuestionar ciertos principios que hoy en día repetimos como un dogma.
 
-¿Qué opinas? ¿Crees que todas las prácticas de SOLID, Clean Architecture, CQRS, DDD, etc... son el camino a seguir o que, quizás, simplemente nos estamos haciendo trampas al solitario, convenciéndonos a nosotros mismos de que no hay otra alternativa?
+¿Qué opinas? ¿Crees que todas las prácticas de SOLID, Clean Architecture, CQRS, DDD, etc... son el camino a seguir ciegamente o que, quizás, simplemente nos estamos haciendo trampas al solitario, convenciéndonos a nosotros mismos de que no hay otra alternativa?
 
 En mi opinión, todas ellas son herramientas que debemos conocer para aplicarlas cuando realmente se necesitan. Y es ahí donde reside la complejidad del desarrollo de software, ya que esa habilidad se gana con la experiencia y difícilmente se puede enseñar.
