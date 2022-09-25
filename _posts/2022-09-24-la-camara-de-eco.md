@@ -15,8 +15,10 @@ Este [libro](https://solid-is-not-solid.com/) resonó muchísimo en mi cabeza ya
 
 A estas alturas creo que todos conocemos lo que es una cámara de eco y los sesgos cognitivos pero nunca me lo había cuestionado sobre este tema. Este libro, de tan solo 63 páginas, me parece super interesante para pensar fuera de la caja y cuestionar ciertos principios que hoy en día repetimos como un dogma.
 
-¿Qué opinas? ¿Crees que todas las prácticas de SOLID, Clean Architecture, CQRS, DDD, etc... son el camino a seguir sin ni plantearnos qué solucionan? ¿O quizás simplemente nos estamos haciendo trampas al solitario, convenciéndonos a nosotros mismos de que no hay otra alternativa? Cuando aplicas alguno de esos principios, ¿sabes exactamente cual es el problema que intenta solucionar y si ese es tu caso?
+¿Qué opinas? ¿Crees que todas las prácticas de SOLID, Clean Architecture, CQRS, DDD, etc... son el camino a seguir sin ni plantearnos qué solucionan? ¿O quizás simplemente nos estamos haciendo trampas al solitario? Cuando aplicas alguno de esos principios, ¿sabes exactamente cual es el problema que intenta solucionar y si ese es tu caso?
 
 En mi opinión, todas ellas son herramientas que debemos conocer para aplicarlas cuando realmente se necesitan. Y es ahí donde reside la complejidad del desarrollo de software, ya que esa habilidad se gana con la experiencia y difícilmente se puede enseñar.
 
-Como el desarrollo de software no es una ciencia ni una ingenería, parece que no nos queda otra que aferrarnos a lo que nos dicen las figuras de autoridad en la industria. No creo que esas personas tengan una mala intención de complicarnos la vida, simplemente que su contexto es distinto al que podemos tener en la mayorìa de nuestros proyectos. Como profesionales, deberíamos ser mucho más críticos con este tipo de mensajes e intentar llegar al fondo del asunto. Aprender de las experiencias de otros, no asumirlo como dogma.
+Como el desarrollo de software no es una ciencia ni una ingenería, parece que no nos queda otra que aferrarnos a lo que nos dicen las figuras de autoridad en la industria. No creo que esas personas tengan una mala intención de complicarnos la vida, simplemente que su contexto es distinto al que podemos tener en la mayorìa de nuestros proyectos.
+
+Como profesionales, deberíamos ser mucho más críticos con este tipo de mensajes e intentar llegar al fondo del asunto. Aprender de las experiencias de otros, no asumirlo como dogma.
