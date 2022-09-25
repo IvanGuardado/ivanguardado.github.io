@@ -3,7 +3,7 @@ layout: post
 title: La cámara de eco
 description: Por algún motivo, esta semana estuvo rondando por mi cabeza el pensamiento de si toda la divulgación sobre cómo hacer software hoy en día, no es más que una gran cámara de eco en la que estamos muchos, dándonos palmas los unos a otros y sin haber voces discordantes.
 date: 2022-09-24
-image: /assets/images/IMG_3278.jpg
+image: assets/images/IMG_3278.jpg
 permalink: /posts/2022/la-camara-de-eco.html
 categories: [coding]
 tags: [Code, Pragmatism, SOLID, Clean Architecture]
