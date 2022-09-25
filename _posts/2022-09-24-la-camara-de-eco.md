@@ -19,6 +19,6 @@ A estas alturas creo que todos conocemos lo que es una cámara de eco y los sesg
 
 En mi opinión, todas ellas son herramientas que debemos conocer para aplicarlas cuando realmente se necesitan. Y es ahí donde reside la complejidad del desarrollo de software, ya que esa habilidad se gana con la experiencia y difícilmente se puede enseñar.
 
-Como el desarrollo de software no es una ciencia ni una ingenería, parece que no nos queda otra que aferrarnos a lo que nos dicen las figuras de autoridad en la industria. No creo que esas personas tengan una mala intención de complicarnos la vida, simplemente que su contexto es distinto al que podemos tener en la mayorìa de nuestros proyectos.
+Como el desarrollo de software no es una ciencia ni una ingeniería, parece que no nos queda otra que aferrarnos a lo que nos dicen las figuras de autoridad en la industria. No creo que esas personas tengan una mala intención de complicarnos la vida, simplemente que su contexto es distinto al que podemos tener en la mayoría de nuestros proyectos.
 
 Como profesionales, deberíamos ser mucho más críticos con este tipo de mensajes e intentar llegar al fondo del asunto. Aprender de las experiencias de otros, no asumirlo como dogma.
