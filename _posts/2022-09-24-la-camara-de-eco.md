@@ -23,3 +23,5 @@ En mi opinión, todas ellas son herramientas que debemos conocer para aplicarlas
 Como el desarrollo de software no es una ciencia ni una ingeniería, parece que no nos queda otra que aferrarnos a lo que nos dicen las figuras de autoridad en la industria. No creo que esas personas tengan una mala intención de complicarnos la vida, simplemente que su contexto es distinto al que podemos tener en la mayoría de nuestros proyectos.
 
 Como profesionales, deberíamos ser mucho más críticos con este tipo de mensajes e intentar llegar al fondo del asunto. Aprender de las experiencias de otros, no asumirlo como dogma.
+
+Puedes dejarme tu opinión en [Twitter](https://twitter.com/ivanguardado/status/1574020571754643457) :)
