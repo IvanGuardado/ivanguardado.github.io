@@ -13,7 +13,7 @@ As all of you know, I 🩷 Ruby. Some day, I’ll talk about my journey learning
 
 RSpec allows behavior-driven development for Ruby. Compared to other BDD tools like MOCHA, it does not seem special at first glance, but it really adds superpowers (even more if used with Rails). Let’s look at a simple example of creating an enumeration inside our model. Rails will automatically provide us with some utility methods.
 
-{% highlight ruby %}
+```rb
 class IncomingPayment < BaseModel
   enum status: {
     created: 0,
@@ -26,7 +26,7 @@ class IncomingPayment < BaseModel
 # So we can use these methods
 incoming_payment.created?
 incoming_payment.created!
-{% endhighlight %}
+```
 
 RSpec provides tons of utilities to make our tests more natural. For example, we can test all boolean values in this natural way:
 ```rb
