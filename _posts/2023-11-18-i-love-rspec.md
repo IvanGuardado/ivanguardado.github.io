@@ -1,6 +1,6 @@
 ---
 layout: post
-title: I Love Rspec
+title: I Love RSpec
 description: 
 date: 2023-11-18
 permalink: /posts/2023/i-love-rspec.html
