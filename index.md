@@ -13,5 +13,5 @@ I am currently focused on **FinTech backend systems**, although I've always like
 
 In my spare time, I enjoy practicing sports and cooking. A healthy lifestyle is my style :)
 
-Would you like to tell me something? Contact me via [LinkedIn](https://www.linkedin.com/in/iv%C3%A1n-guardado-castro-b29a6821/) or [Twitter](https://twitter.com/ivanguardado) :)
+Would you like to tell me something? Contact me via [LinkedIn](https://www.linkedin.com/in/iv%C3%A1n-guardado-castro-b29a6821/) or [Twitter](https://twitter.com/ivanguardado)
 
