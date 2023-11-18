@@ -3,7 +3,6 @@ layout: post
 title: I Love Rspec
 description: 
 date: 2023-11-18
-image: assets/images/IMG_3278.jpg
 permalink: /posts/2023/i-love-rspec.html
 categories: [coding]
 tags: [Code, Testing, RSpec, Ruby]
