@@ -31,8 +31,8 @@ plugins:
   - jekyll-remote-theme
 
 permalink:  /posts/:year-:month-:day/:title
-# paginate:   5
-# paginate_path: "/posts/page:num/"
+paginate:   5000
+paginate_path: "/posts/page:num/"
 
 
 # Exclude from processing.
