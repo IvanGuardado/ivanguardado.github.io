@@ -7,7 +7,7 @@ image: assets/images/IMG_3278.jpg
 permalink: /posts/2023/i-love-rspec.html
 categories: [coding]
 tags: [Code, Testing, RSpec, Ruby]
-published: false
+published: true
 ---
 As all of you know, I 🩷 Ruby. Some day, I’ll talk about my journey learning different programming languages until I found the best one for me. However, today, I want to talk about one of the best tools I’ve used: [RSpec](https://rspec.info/).
 
