@@ -22,6 +22,12 @@ url: "https://ivanguardado.com" # the base hostname & protocol for your site, e.
 twitter_username: ivanguardado
 github_username:  IvanGuardado
 
+# Author
+author:
+  name:         Iván Guardado
+  url:          https://ivanguardado.com
+
+
 # Build settings
 markdown: kramdown
 remote_theme: chesterhow/tale
