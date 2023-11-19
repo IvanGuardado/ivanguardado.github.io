@@ -14,7 +14,6 @@ footer,
 }
 
 .nav {
-  // box-shadow: 0 2px 2px -2px $shadow-color;
   overflow: auto;
 
   &-container {
@@ -29,6 +28,7 @@ footer,
     height: 32px;
     font-family: 'Italianno', cursive;
     font-size: 64px;
+    color: $default-color;
   }
 
   ul {
@@ -55,8 +55,9 @@ footer,
     }
   }
 
-  a {
+  ul a {
     color: $default-color;
+    font-family: $sans-serif;
   }
 }
 
