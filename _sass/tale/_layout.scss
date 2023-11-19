@@ -14,7 +14,7 @@ footer,
 }
 
 .nav {
-  box-shadow: 0 2px 2px -2px $shadow-color;
+  // box-shadow: 0 2px 2px -2px $shadow-color;
   overflow: auto;
 
   &-container {
@@ -24,14 +24,11 @@ footer,
   }
 
   &-title {
-    @include transition(all .2s ease-out);
     display: inline-block;
-    background-image: url(./images/favicon-32x32.png);
-    background-size: 32px;
-    background-repeat: no-repeat;
     width: 32px;
     height: 32px;
-    text-indent: -100rem;
+    font-family: 'Italianno', cursive;
+    font-size: 64px;
   }
 
   ul {
@@ -60,7 +57,6 @@ footer,
 
   a {
     color: $default-color;
-    font-family: $sans-serif;
   }
 }
 
