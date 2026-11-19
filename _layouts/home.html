@@ -1,15 +1,16 @@
 ---
 layout: default
 ---
-
-<div class="catalogue">
+{%- assign count = site.posts | size -%}
+<p class="ls-total">total {{ count }}</p>
+<ul class="ls">
   {% for post in site.posts %}
-    {% if post.sticky %}
-      {% include catalogue_item.html sticky='true' %}
-    {% endif %}
+  <li>
+    <span class="ls-perm">-rw-r--r--</span>
+    <span class="ls-owner">ivan</span>
+    <time class="ls-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+    <a class="ls-name" href="{{ post.url | prepend: site.baseurl }}" title="{{ post.title | escape }}">{{ post.slug }}.md</a>
+    <span class="ls-desc"># {{ post.title | remove: '→' | strip }}</span>
+  </li>
   {% endfor %}
-
-  {% for post in paginator.posts %}
-    {% include catalogue_item.html %}
-  {% endfor %}
-</div>
+</ul>
