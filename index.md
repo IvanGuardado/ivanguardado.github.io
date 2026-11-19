@@ -5,15 +5,11 @@ pagination:
 title: About me
 ---
 
-<pre class="ascii-banner" role="img" aria-label="Iván Guardado"><span class="ascii-word">    ____
-   /  _/   ______ _____
-   / / | | / / __ `/ __ \
- _/ /  | |/ / /_/ / / / /
-/___/  |___/\__,_/_/ /_/</span><span class="ascii-word">   ______                     __          __
-  / ____/_  ______ __________/ /___ _____/ /___
- / / __/ / / / __ `/ ___/ __  / __ `/ __  / __ \
-/ /_/ / /_/ / /_/ / /  / /_/ / /_/ / /_/ / /_/ /
-\____/\__,_/\__,_/_/   \__,_/\__,_/\__,_/\____/</span></pre>
+<pre class="ascii-banner" role="img" aria-label="Iván Guardado"><span class="ascii-word">    ____                      ______                     __          __
+   /  _/   ______ _____      / ____/_  ______ __________/ /___ _____/ /___
+   / / | | / / __ `/ __ \   / / __/ / / / __ `/ ___/ __  / __ `/ __  / __ \
+ _/ /  | |/ / /_/ / / / /  / /_/ / /_/ / /_/ / /  / /_/ / /_/ / /_/ / /_/ /
+/___/  |___/\__,_/_/ /_/   \____/\__,_/\__,_/_/   \__,_/\__,_/\__,_/\____/</span></pre>
 <p class="ascii-sub">-=[ software developer · fintech · galicia ]=-</p>
 
 I'm Iván Guardado, a software developer born in Spain's small and beautiful region named Galicia, where people enjoy eating octopus, big steaks, and drinking coffee liqueur.
