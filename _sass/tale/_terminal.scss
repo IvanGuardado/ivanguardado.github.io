@@ -126,6 +126,12 @@ main.term-result {
 }
 
 .term-err { color: #ff7b72; }
+
+.term-pre {
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+}
 .term-muted { color: $default-tint; }
 
 .term-file + .term-file,
@@ -502,4 +508,124 @@ footer.term-status {
 
   .status-mode { display: none !important; }
   footer.term-status { padding-left: .9rem; }
+}
+
+// ================================================================ retro skin
+// Layered on top of the base terminal: IBM Plex Mono, title bar between
+// double rules, inverse-video status bar and a block cursor.
+
+html { font-size: 15px; }
+
+// Frameless window: the terminal blends into the page
+.term {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+// Title bar between double rules
+.term-bar {
+  background: transparent;
+  border: 0;
+  height: 2.4rem;
+  padding: 0 1rem;
+
+  &::before,
+  &::after {
+    border-top: 3px double $border;
+    content: '';
+    flex: 1;
+  }
+}
+
+.term-title {
+  color: $default-tint;
+  font-size: .8rem;
+  letter-spacing: .15em;
+  padding: 0 1rem;
+  text-transform: uppercase;
+}
+
+// Inverse video status bar
+footer.term-status {
+  background: $default-color;
+  border: 0;
+  font-size: .8rem;
+  padding: 0 .6rem 0 0;
+
+  .status-left,
+  .status-path { color: $bg; }
+
+  .status-mode {
+    background: $green;
+    color: $bg;
+    letter-spacing: .1em;
+    margin-right: .6rem;
+  }
+
+  a { color: $bg; }
+  a:hover { background: $bg; color: $default-color; }
+}
+
+.term-screen {
+  padding: 1rem 1.6rem 1.5rem;
+}
+
+.term-result {
+  // The base theme sets line-height on every element; let blocks control it
+  .highlight *,
+  ul.ls *,
+  .tree * { line-height: inherit; }
+
+  .highlight { line-height: 1.5; }
+  ul.ls > li { line-height: 1.6; }
+  ul.ls .ls-desc { font-size: .85rem; margin-bottom: .45rem; }
+}
+
+// Block cursor that follows the caret (enabled by terminal.js)
+.term-echo { display: none; }
+
+.term-input.has-echo {
+  .term-field-wrap { min-height: 1.4em; }
+
+  #term-field {
+    caret-color: transparent;
+    color: transparent;
+    inset: 0;
+    position: absolute;
+  }
+
+  .term-cursor { display: none !important; }
+
+  .term-echo {
+    color: $default-shade;
+    display: inline;
+    white-space: pre;
+  }
+}
+
+.term-echo .caret {
+  animation: blink 1s steps(1) infinite;
+  background: $green;
+  color: $bg;
+}
+
+.term-input:not(:focus-within) .term-echo .caret {
+  animation: none;
+  background: transparent;
+  color: inherit;
+  outline: 1px solid $green;
+  outline-offset: -1px;
+}
+
+@media (max-width: 640px) {
+  html { font-size: 14px; }
+  .term-screen { padding: .8rem 1rem 1rem; }
+  .term-bar { padding: 0 .5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-echo .caret,
+  .term-cursor { animation: none; }
 }

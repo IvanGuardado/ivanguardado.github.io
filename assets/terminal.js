@@ -225,6 +225,37 @@
     try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history_.slice(-100))); } catch (e) { /* ignore */ }
   }
 
+  // ------------------------------------------------------------ easter eggs
+  // Hidden system files for curious visitors. Not listed in ~ on purpose.
+
+  var PASSWD = [
+    'root:x:0:0:root:/root:/bin/bash',
+    'daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin',
+    'ivan:x:1000:1000:Iv\u00e1n Guardado,,,:/home/ivan:/bin/zsh',
+    'guest:x:1001:1001:You. Yes, you \ud83d\udc4b:/home/guest:/bin/bash',
+    'rody:x:1002:1002::/home/rody:/bin/bash',
+    'DuChe:x:1003:1003::/home/DuChe:/bin/bash',
+    'ShadowJob:x:1004:1004::/home/ShadowJob:/bin/bash',
+    'WerBybe:x:1005:1005::/home/WerBybe:/bin/bash',
+    'LlaS:x:1006:1006::/home/LlaS:/bin/bash'
+  ];
+
+  var SYSTEM_FILES = {
+    '/etc/passwd': function (res) {
+      res.appendChild(el('div', 'term-pre', PASSWD.join('\n')));
+      print(res, '\n# Nice try \ud83d\ude0f No passwords here, just an x. The juicy stuff lives in /etc/shadow\u2026', 'term-muted');
+    },
+    '/etc/shadow': function (res) {
+      err(res, 'cat: /etc/shadow: Permission denied');
+      print(res, 'Bold move \ud83d\udd75\ufe0f Even with root you would only find hashes of coffee recipes.', 'term-muted');
+    }
+  };
+
+  function systemPath(path) {
+    var p = '/' + String(path || '').replace(/^\/+/, '').replace(/\/+$/, '');
+    return p;
+  }
+
   var HELP = [
     ['help', 'show this help'],
     ['ls [-l] [dir]', 'list directory contents'],
@@ -257,6 +288,11 @@
       });
       if (!targets.length) targets.push('');
       targets.forEach(function (t, i) {
+        if (t.charAt(0) === '/' && systemPath(t) === '/etc') {
+          var etc = el('ul', 'ls-short');
+          ['passwd', 'shadow'].forEach(function (n) { etc.appendChild(el('li', null, n)); });
+          return res.appendChild(etc);
+        }
         var node = resolve(t);
         if (!node) return err(res, "ls: cannot access '" + t + "': No such file or directory");
         if (node.type === 'file') {
@@ -291,6 +327,7 @@
       var chain = Promise.resolve();
       args.forEach(function (a) {
         chain = chain.then(function () {
+          if (SYSTEM_FILES[systemPath(a)] && a.charAt(0) === '/') return SYSTEM_FILES[systemPath(a)](res);
           var node = resolve(a);
           if (!node) return err(res, 'cat: ' + a + ': No such file or directory');
           if (node.type === 'dir') return err(res, 'cat: ' + a + ': Is a directory');
@@ -477,6 +514,33 @@
     scrollToBottom();
   }
 
+  // ------------------------------------------------------------ block cursor
+
+  // Mirror the field into a visible span so the cursor can be a solid block
+  // that follows the caret, like an old hardware terminal.
+  var echo = document.getElementById('term-echo');
+
+  function renderEcho() {
+    if (!echo) return;
+    var value = field.value;
+    var pos = field.selectionStart == null ? value.length : field.selectionStart;
+    echo.textContent = '';
+    echo.appendChild(document.createTextNode(value.slice(0, pos)));
+    echo.appendChild(el('span', 'caret', value.charAt(pos) || ' '));
+    echo.appendChild(document.createTextNode(value.slice(pos + 1)));
+  }
+
+  if (echo) {
+    form.classList.add('has-echo');
+    ['input', 'focus', 'blur', 'select', 'click'].forEach(function (evt) {
+      field.addEventListener(evt, renderEcho);
+    });
+    document.addEventListener('selectionchange', function () {
+      if (document.activeElement === field) renderEcho();
+    });
+    renderEcho();
+  }
+
   // ------------------------------------------------------------ events
 
   var cursor = -1;
@@ -487,10 +551,12 @@
     var value = field.value;
     field.value = '';
     cursor = -1;
+    renderEcho();
     run(value);
   });
 
   field.addEventListener('keydown', function (e) {
+    setTimeout(renderEcho, 0);
     if (e.key === 'Tab') {
       e.preventDefault();
       complete();
