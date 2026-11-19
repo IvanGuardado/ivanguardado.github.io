@@ -1,26 +1,77 @@
---- 
-layout: compress 
+---
+layout: compress
 ---
 <!DOCTYPE html>
 <html lang="en">
 
   {% include head.html %}
 
+  {%- if page.layout == 'home' -%}
+    {%- assign cmd = 'ls -l posts/' -%}
+  {%- elsif page.collection == 'posts' -%}
+    {%- capture cmd -%}cat posts/{{ page.slug }}.md{%- endcapture -%}
+  {%- elsif page.url == '/' -%}
+    {%- assign cmd = 'cat about.md' -%}
+  {%- else -%}
+    {%- capture cmd -%}cat {{ page.name | replace: '.html', '.md' }}{%- endcapture -%}
+  {%- endif -%}
+
   <body>
-    <nav class="nav">
-      <div class="nav-container">
-        <a class="nav-prompt" href="{{ site.baseurl }}/"><span class="nav-user">ivan@guardado</span>:<span class="nav-path">~</span>$<span class="nav-cursor"></span></a>
-        <ul>
-          <li><a href="{{ '/' | prepend: site.baseurl }}">About</a></li>
-          <li><a href="{{ site.baseurl }}/posts">Posts</a></li>
-        </ul>
+    <div class="term">
+      <header class="term-bar">
+        <span class="term-title">ivanguardado.com &mdash; bash</span>
+      </header>
+
+      <div class="term-screen" id="term-screen">
+        <div class="term-output" id="term-output">
+          <div class="term-block">
+            <p class="term-cmd"><span class="term-ps1">{% include prompt.html %}</span><span class="term-typed">{{ cmd }}</span></p>
+            <main class="term-result">
+              {{ content }}
+            </main>
+          </div>
+          {%- if page.url == '/' %}
+          <div class="term-block">
+            <p class="term-cmd"><span class="term-ps1">{% include prompt.html %}</span><span class="term-typed">ls</span></p>
+            <nav class="term-result">
+              <ul class="ls-short">
+                <li><a class="ls-file" href="{{ '/' | relative_url }}">about.md</a></li>
+                <li><a class="ls-dir" href="{{ '/posts/' | relative_url }}">posts/</a></li>
+              </ul>
+            </nav>
+          </div>
+          {%- endif %}
+        </div>
+
+        <form class="term-input" id="term-input" autocomplete="off" onsubmit="return false">
+          <label class="term-ps1" for="term-field">{% include prompt.html %}</label>
+          <span class="term-field-wrap">
+            <input id="term-field" type="text" placeholder=" " spellcheck="false" autocapitalize="off" aria-label="Terminal command">
+            <span class="term-cursor" aria-hidden="true"></span>
+            <span class="term-echo" id="term-echo" aria-hidden="true"></span>
+          </span>
+        </form>
+      </div>
+
+      {% include footer.html %}
     </div>
-  </nav>
 
-    <main>
-      {{ content }}
-    </main>
-
-    {% include footer.html %}
+    <script type="application/json" id="term-fs">
+      {
+        "siteTitle": {{ site.title | jsonify }},
+        "today": {{ site.time | date: "%Y-%m-%d" | jsonify }},
+        "homeUrl": {{ '/' | relative_url | jsonify }},
+        "postsUrl": {{ '/posts/' | relative_url | jsonify }},
+        "twitterUrl": {{ site.twitter_username | prepend: 'https://twitter.com/' | jsonify }},
+        "linkedinUrl": "https://www.linkedin.com/in/iv%C3%A1n-guardado-castro-b29a6821/",
+        "about": { "url": {{ '/' | relative_url | jsonify }}, "title": "About me" },
+        "posts": [
+          {%- for post in site.posts -%}
+          { "name": {{ post.slug | append: '.md' | jsonify }}, "title": {{ post.title | remove: '→' | strip | jsonify }}, "date": {{ post.date | date: "%Y-%m-%d" | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+    <script src="{{ '/assets/terminal.js' | relative_url }}" defer></script>
   </body>
 </html>
