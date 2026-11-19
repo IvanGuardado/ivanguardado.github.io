@@ -604,6 +604,14 @@
 
   window.addEventListener('popstate', function () { location.reload(); });
 
+  // On the landing page (cat about.md + ls), start at the bottom like a real
+  // terminal; re-run once fonts/images settle since they change the height.
+  if (normUrl(location.pathname) === normUrl(data.homeUrl)) {
+    scrollToBottom();
+    window.addEventListener('load', scrollToBottom);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scrollToBottom);
+  }
+
   // Focus the prompt on desktop without jumping to the bottom of long pages
   if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
     field.focus({ preventScroll: true });
