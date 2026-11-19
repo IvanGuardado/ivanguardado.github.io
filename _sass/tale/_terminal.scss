@@ -1,0 +1,235 @@
+// Dark / terminal overrides on top of the Tale theme
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+html,
+body {
+  background: $bg;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba($green, .25);
+  color: $default-shade;
+}
+
+a {
+  color: $blue;
+  @include transition(color .15s ease-out);
+
+  &:hover { color: $green; }
+}
+
+strong { color: $default-shade; }
+
+hr {
+  border: 0;
+  border-top: 1px dashed $border;
+  margin: 2.5rem 0;
+}
+
+// Headings with a markdown-ish prefix
+.post {
+  h2, h3, h4 {
+    color: $default-shade;
+
+    &::before {
+      color: $green;
+      font-weight: 400;
+    }
+  }
+
+  h2::before { content: '## '; }
+  h3::before { content: '### '; }
+  h4::before { content: '#### '; }
+}
+
+h2 { font-size: 1.45rem; }
+h3 { color: $default-shade; font-weight: 700; font-size: 1.15rem; }
+h4 { font-size: 1.05rem; }
+
+// Nav
+.nav {
+  border-bottom: 1px solid $border;
+  margin-bottom: 1rem;
+
+  &-container { padding-bottom: 1rem; }
+}
+
+// Post header
+.post {
+  &-info {
+    color: $default-tint;
+    font-size: .85rem;
+
+    time::before {
+      color: $green;
+      content: '// ';
+    }
+  }
+
+  &-title {
+    color: $default-shade;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -.5px;
+    line-height: 1.2;
+  }
+
+  &-line {
+    border-top: 0;
+    border-bottom: 2px dashed $green;
+    width: 6rem;
+  }
+
+  img {
+    border: 1px solid $border;
+    border-radius: 6px;
+  }
+
+  img + em { color: $default-tint; font-size: .8rem; }
+}
+
+// Lists
+.post ul {
+  list-style: none;
+  padding-left: 1.5rem;
+
+  > li { position: relative; }
+  > li::before {
+    color: $green;
+    content: '>';
+    left: -1.3rem;
+    position: absolute;
+  }
+}
+
+// Blockquote as a comment block
+blockquote {
+  background: $surface;
+  border-left: 3px solid $purple;
+  border-radius: 0 6px 6px 0;
+  color: $grey-1;
+  padding: .75rem 1.25rem;
+
+  @media (min-width: 600px) {
+    padding: .75rem 1.25rem;
+  }
+
+  p { color: $grey-1; }
+}
+
+// Code
+code {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 4px;
+  color: $code-color;
+  font-size: 88%;
+  padding: .1em .4em;
+}
+
+pre code { border: 0; }
+
+.highlight,
+.highlight pre,
+.highlight .hll {
+  background-color: $surface;
+}
+
+.highlight {
+  border: 1px solid $border;
+  border-radius: 6px;
+  font-size: .9rem;
+
+  // Rouge nests div.highlight > pre.highlight: style only the outer box
+  .highlight,
+  &pre {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Tables
+table {
+  border-collapse: collapse;
+  margin: 0 0 1.5rem;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid $border;
+  padding: .4rem .75rem;
+  text-align: left;
+}
+
+th { background: $surface; color: $default-shade; }
+
+// Posts index
+.catalogue {
+  &-item {
+    border-bottom: 1px dashed $border;
+    color: $default-color;
+    padding: 1.5rem 0;
+
+    &:hover { text-decoration: none; }
+    &:hover .catalogue-title { color: $green; }
+  }
+
+  &-time,
+  &-pinned {
+    color: $default-tint;
+    font-size: .85rem;
+
+    &::before {
+      color: $green;
+      content: '$ date: ';
+    }
+  }
+
+  &-title {
+    @include transition(color .15s ease-out);
+    color: $default-shade;
+    font-size: 1.35rem;
+    line-height: 1.35;
+  }
+
+  &-line {
+    border-top: 2px solid $green;
+  }
+
+  p { color: $grey-1; }
+}
+
+// Footer
+footer {
+  border-top: 1px solid $border;
+  margin-top: 0;
+
+  .social {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .social li {
+    display: inline-block;
+    margin: 0 1rem;
+  }
+
+  .social a {
+    color: $default-tint;
+    font-size: .9rem;
+
+    &::before { color: $green; content: '@'; }
+    &:hover { color: $green; }
+  }
+}

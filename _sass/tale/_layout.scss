@@ -22,11 +22,26 @@ footer,
     text-align: center;
   }
 
-  &-title {
-    display: inline-block;
-    font-family: 'Italianno', cursive;
-    font-size: 64px;
+  &-prompt {
     color: $default-color;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 500;
+
+    &:hover { text-decoration: none; }
+  }
+
+  &-user { color: $green; }
+  &-path { color: $blue; }
+
+  &-cursor {
+    animation: blink 1.1s steps(1) infinite;
+    background: $green;
+    display: inline-block;
+    height: 1.1em;
+    margin-left: .4em;
+    vertical-align: text-bottom;
+    width: .55em;
   }
 
   ul {
@@ -34,13 +49,14 @@ footer,
     margin: 1rem 0 0;
     padding: 0;
     text-align: center;
+    text-transform: lowercase;
   }
 
   li {
     @include transition(all .2s ease-out);
     color: $default-color;
     display: inline-block;
-    opacity: .6;
+    opacity: .7;
     padding: 0 2rem 0 0;
 
     &:last-child {
@@ -56,6 +72,11 @@ footer,
   ul a {
     color: $default-color;
     font-family: $sans-serif;
+
+    &::before {
+      color: $green;
+      content: './';
+    }
   }
 }
 
@@ -66,9 +87,10 @@ footer,
     }
 
     ul {
-      bottom: 0;
+      margin: 0;
       position: absolute;
       right: 0;
+      top: 0;
     }
   }
 }
